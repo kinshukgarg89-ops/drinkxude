@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ASSETS } from "@/lib/assets";
 
 const stories = [
@@ -42,45 +42,32 @@ function StoryBlock({
   story: (typeof stories)[0];
   index: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
   const isReversed = index % 2 === 1;
 
   return (
       <div
-      ref={ref}
       className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center py-6 md:py-10 ${
         isReversed ? "md:[direction:rtl]" : ""
       }`}
     >
       {/* Image with clean frame */}
       <motion.div
-        style={{ y }}
-        transition={{ duration: 0.5 }}
+        initial={{ y: 60, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
         className={`group p-2 md:p-3 rounded-2xl bg-white border border-black/10 shadow-xl cursor-pointer md:hover:scale-[1.03] transition-transform duration-500 ${
           isReversed ? "md:[direction:ltr]" : ""
         }`}
       >
         <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden rounded-xl bg-[#f5f5f5] border border-black/5">
-          <motion.div
-            initial={{ scale: 1.15, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={story.image}
-              alt={story.alt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </motion.div>
+          <Image
+            src={story.image}
+            alt={story.alt}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
         </div>
       </motion.div>
 

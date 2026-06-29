@@ -9,6 +9,7 @@ interface CartItem {
   price: number;
   color: string;
   gradient: string[];
+  image: string;
   qty: number;
 }
 

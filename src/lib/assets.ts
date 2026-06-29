@@ -8,18 +8,18 @@ export const ASSETS = {
   hero: {
     slides: [
       {
-        mobile: "/assets/hero_slide_1_traffic_1781979518558.png",
-        desktop: "/assets/hero_slide_1_traffic_1781979518558.png",
-        alt: "Xude Energy in the city",
+        mobile: "/assets/pimg1.png",
+        desktop: "/assets/img1.png",
+        alt: "Xude Energy reimagined",
       },
       {
-        mobile: "/assets/hero_slide_2_fruit_1781979531812.png",
-        desktop: "/assets/hero_slide_2_fruit_1781979531812.png",
-        alt: "Fruit-forward energy",
+        mobile: "/assets/pimg3.png",
+        desktop: "/assets/img3.png",
+        alt: "Built for every energy",
       },
       {
-        mobile: "/assets/hero_slide_3_bigfoot_1781979543557.png",
-        desktop: "/assets/hero_slide_3_bigfoot_1781979543557.png",
+        mobile: "/assets/img4.png.png",
+        desktop: "/assets/img4.png",
         alt: "Adventure with Xude",
       },
     ],
@@ -50,12 +50,12 @@ export const ASSETS = {
     products: [
       {
         id: "lemon-mint",
-        image: "/assets/lemon-mint-can.png",
+        image: "/assets/Xude_coverscrenn.png",
         alt: "Lemon Mint 12-Pack",
       },
       {
         id: "mango-passion",
-        image: "/assets/mango-passion-can.png",
+        image: "/assets/XudeMango.png",
         alt: "Mango Passion 12-Pack",
       },
     ],

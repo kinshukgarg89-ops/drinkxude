@@ -1,51 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, X } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
 
-function CanVisual({ gradient }: { gradient: string[] }) {
+function CartItemImage({ image, color, name }: { image: string; color: string; name: string }) {
+  const [imgError, setImgError] = useState(false);
+
+  if (imgError) {
+    return (
+      <div
+        className="w-full h-full"
+        style={{ backgroundColor: color }}
+      />
+    );
+  }
+
   return (
-    <svg viewBox="0 0 120 260" className="w-full h-full drop-shadow-xl">
-      <defs>
-        <linearGradient id={`cartCan-${gradient[0].replace("#", "")}`} x1="0" y1="0" x2="120" y2="260">
-          <stop offset="0%" stopColor={gradient[0]} />
-          <stop offset="60%" stopColor={gradient[1]} />
-          <stop offset="100%" stopColor={gradient[0]} />
-        </linearGradient>
-        <linearGradient id={`cartMetal-${gradient[0].replace("#", "")}`} x1="0" y1="0" x2="120" y2="0">
-          <stop offset="0%" stopColor="#9ca3af" />
-          <stop offset="50%" stopColor="#e5e7eb" />
-          <stop offset="100%" stopColor="#9ca3af" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M20 30 C20 15 35 8 60 8 C85 8 100 15 100 30 L100 230 C100 245 85 252 60 252 C35 252 20 245 20 230 Z"
-        fill={`url(#cartCan-${gradient[0].replace("#", "")})`}
-      />
-      <path
-        d="M20 30 C20 42 35 50 60 50 C85 50 100 42 100 30 C100 18 85 10 60 10 C35 10 20 18 20 30 Z"
-        fill={`url(#cartMetal-${gradient[0].replace("#", "")})`}
-      />
-      <path
-        d="M20 230 C20 242 35 250 60 250 C85 250 100 242 100 230 C100 218 85 210 60 210 C35 210 20 218 20 230 Z"
-        fill={`url(#cartMetal-${gradient[0].replace("#", "")})`}
-      />
-      <rect x="28" y="55" width="64" height="150" rx="2" fill="rgba(0,0,0,0.06)" />
-      <text
-        x="60"
-        y="140"
-        textAnchor="middle"
-        fill="rgba(0,0,0,0.8)"
-        fontSize="14"
-        fontWeight="900"
-        fontFamily="var(--font-dm-sans), sans-serif"
-        letterSpacing="1"
-      >
-        XUDE
-      </text>
-    </svg>
+    <Image
+      src={image}
+      alt={name}
+      fill
+      className="object-contain"
+      sizes="80px"
+      onError={() => setImgError(true)}
+    />
   );
 }
 
@@ -96,10 +77,10 @@ export function CartDrawer() {
                       <X className="w-4 h-4" />
                     </button>
                     <div
-                      className="w-16 h-20 shrink-0"
+                      className="relative w-16 h-20 shrink-0"
                       style={{ backgroundColor: item.color }}
                     >
-                      <CanVisual gradient={item.gradient} />
+                      <CartItemImage image={item.image} color={item.color} name={item.name} />
                     </div>
                     <div className="flex-1 pr-6">
                       <h4 className="font-bold">{item.name}</h4>

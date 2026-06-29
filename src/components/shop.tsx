@@ -78,6 +78,7 @@ function ProductCard({ product, idx, isDesktop }: { product: (typeof products)[0
       price: product.price,
       color: product.color,
       gradient: product.gradient,
+      image: product.image,
     });
   };
 

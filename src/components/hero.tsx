@@ -90,7 +90,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="w-full max-w-[280px] md:w-auto md:min-w-[180px]"
+                className="w-1/2 mx-auto md:w-auto md:min-w-[180px] md:mx-0"
               >
                 <button
                   onClick={() => scrollTo("shop-section")}
