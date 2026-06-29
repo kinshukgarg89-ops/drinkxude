@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Leaf, Zap, Droplets, Heart } from "lucide-react";
+import { ASSETS } from "@/lib/assets";
 
 const ingredients = [
   {
@@ -61,7 +62,7 @@ export function WhatIsInside() {
           >
             <div className="relative aspect-[9/16] md:aspect-video w-full bg-background/10 border border-background/10 overflow-hidden">
               <video
-                src="/assets/xude_ingred.mp4"
+                src={ASSETS.inside.video}
                 autoPlay
                 muted
                 loop

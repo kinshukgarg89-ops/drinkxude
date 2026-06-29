@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
+import { ASSETS } from "@/lib/assets";
 
 function useIsClient() {
   return useSyncExternalStore(
@@ -15,12 +16,12 @@ const opportunities = [
   {
     id: "team",
     title: "Become a team member",
-    video: "/assets/team-video.mp4",
+    video: ASSETS.joinUs.teamVideo,
   },
   {
     id: "partner",
     title: "Become business partner",
-    video: "/assets/partner-video.mp4",
+    video: ASSETS.joinUs.partnerVideo,
   },
 ];
 

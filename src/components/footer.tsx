@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { getLenis } from "@/lib/lenis";
+import { ASSETS } from "@/lib/assets";
 
 const socialIcons = [
   {
@@ -70,7 +71,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-5">
             <div className="relative h-12 md:h-14 w-40 md:w-48 mb-6">
               <Image
-                src="/assets/media__1781978310756.png"
+                src={ASSETS.footerLogo}
                 alt="Xude Energy"
                 fill
                 className="object-contain brightness-0 invert"

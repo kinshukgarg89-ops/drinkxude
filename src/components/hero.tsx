@@ -4,21 +4,9 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { getLenis } from "@/lib/lenis";
+import { ASSETS } from "@/lib/assets";
 
-const heroSlides = [
-  {
-    src: "/assets/hero_slide_1_traffic_1781979518558.png",
-    alt: "Xude Energy in the city",
-  },
-  {
-    src: "/assets/hero_slide_2_fruit_1781979531812.png",
-    alt: "Fruit-forward energy",
-  },
-  {
-    src: "/assets/hero_slide_3_bigfoot_1781979543557.png",
-    alt: "Adventure with Xude",
-  },
-];
+const heroSlides = ASSETS.hero.slides;
 
 export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -51,21 +39,24 @@ export function Hero() {
           {heroSlides.map((slide, idx) =>
             idx === currentSlide ? (
               <motion.div
-                key={slide.src}
+                key={slide.desktop}
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0"
               >
-                <Image
-                  src={slide.src}
-                  alt={slide.alt}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="100vw"
-                />
+                <picture className="absolute inset-0">
+                  <source media="(min-width: 768px)" srcSet={slide.desktop} />
+                  <Image
+                    src={slide.mobile}
+                    alt={slide.alt}
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="100vw"
+                  />
+                </picture>
               </motion.div>
             ) : null
           )}

@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Plus } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
 import { CartDrawer } from "@/components/cart-drawer";
+import { ASSETS } from "@/lib/assets";
 
 const products = [
   {
@@ -17,6 +19,7 @@ const products = [
     color: "#D4F46C",
     hoverText: "dark",
     gradient: ["#D4F46C", "#a8d648"],
+    image: ASSETS.shop.products[0].image,
   },
   {
     id: "mango-passion",
@@ -28,50 +31,37 @@ const products = [
     color: "#F97316",
     hoverText: "dark",
     gradient: ["#F97316", "#EA580C"],
+    image: ASSETS.shop.products[1].image,
   },
 ];
 
-function CanVisual({ gradient }: { gradient: string[] }) {
+function ProductImage({ product, isDesktop }: { product: (typeof products)[0]; isDesktop?: boolean }) {
+  const [imgError, setImgError] = useState(false);
+
+  if (imgError) {
+    return (
+      <div
+        className="w-full h-full max-h-[260px] aspect-[3/4]"
+        style={{ backgroundColor: product.color }}
+      />
+    );
+  }
+
   return (
-    <svg viewBox="0 0 120 260" className="w-full h-full drop-shadow-2xl">
-      <defs>
-        <linearGradient id={`shopCan-${gradient[0].replace("#", "")}`} x1="0" y1="0" x2="120" y2="260">
-          <stop offset="0%" stopColor={gradient[0]} />
-          <stop offset="60%" stopColor={gradient[1]} />
-          <stop offset="100%" stopColor={gradient[0]} />
-        </linearGradient>
-        <linearGradient id={`shopMetal-${gradient[0].replace("#", "")}`} x1="0" y1="0" x2="120" y2="0">
-          <stop offset="0%" stopColor="#9ca3af" />
-          <stop offset="50%" stopColor="#e5e7eb" />
-          <stop offset="100%" stopColor="#9ca3af" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M20 30 C20 15 35 8 60 8 C85 8 100 15 100 30 L100 230 C100 245 85 252 60 252 C35 252 20 245 20 230 Z"
-        fill={`url(#shopCan-${gradient[0].replace("#", "")})`}
+    <motion.div
+      className="relative w-full h-full max-h-[260px] aspect-[3/4]"
+      whileHover={isDesktop ? { scale: 1.05 } : undefined}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
+      <Image
+        src={product.image}
+        alt={product.name}
+        fill
+        className="object-contain"
+        sizes="(max-width: 768px) 80vw, 40vw"
+        onError={() => setImgError(true)}
       />
-      <path
-        d="M20 30 C20 42 35 50 60 50 C85 50 100 42 100 30 C100 18 85 10 60 10 C35 10 20 18 20 30 Z"
-        fill={`url(#shopMetal-${gradient[0].replace("#", "")})`}
-      />
-      <path
-        d="M20 230 C20 242 35 250 60 250 C85 250 100 242 100 230 C100 218 85 210 60 210 C35 210 20 218 20 230 Z"
-        fill={`url(#shopMetal-${gradient[0].replace("#", "")})`}
-      />
-      <rect x="28" y="55" width="64" height="150" rx="2" fill="rgba(0,0,0,0.06)" />
-      <text
-        x="60"
-        y="140"
-        textAnchor="middle"
-        fill="rgba(0,0,0,0.8)"
-        fontSize="14"
-        fontWeight="900"
-        fontFamily="var(--font-dm-sans), sans-serif"
-        letterSpacing="1"
-      >
-        XUDE
-      </text>
-    </svg>
+    </motion.div>
   );
 }
 
@@ -109,20 +99,7 @@ function ProductCard({ product, idx, isDesktop }: { product: (typeof products)[0
       >
         {/* Image container - takes remaining height */}
         <div className="flex-1 min-h-0 relative flex items-center justify-center">
-          {isDesktop ? (
-            <motion.div
-              className="w-24 h-48 md:w-40 md:h-80"
-              whileHover={{ scale: 1.08, rotate: 3 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <CanVisual gradient={product.gradient} />
-            </motion.div>
-          ) : (
-            <div
-              className="w-full h-full max-h-[220px] aspect-[3/4]"
-              style={{ backgroundColor: product.color }}
-            />
-          )}
+          <ProductImage product={product} isDesktop={isDesktop} />
         </div>
 
         {/* Product info */}

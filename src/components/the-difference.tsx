@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ASSETS } from "@/lib/assets";
 
 const stories = [
   {
@@ -11,8 +12,8 @@ const stories = [
     title: "Energy for everyday ambition.",
     description:
       "Whether you’re building, creating, or pushing through the afternoon slump, Xude delivers clean focus without the synthetic rush.",
-    image: "/gallery_1_new.jpg",
-    alt: "Corporate energy",
+    image: ASSETS.difference.stories[0].image,
+    alt: ASSETS.difference.stories[0].alt,
   },
   {
     id: "fruit",
@@ -20,8 +21,8 @@ const stories = [
     title: "Inspired by fruit, not chemicals.",
     description:
       "Familiar flavours crafted for modern performance. We started with real fruit inspiration and built an energy drink around it.",
-    image: "/gallery_2_new.jpg",
-    alt: "Fruit inspiration",
+    image: ASSETS.difference.stories[1].image,
+    alt: ASSETS.difference.stories[1].alt,
   },
   {
     id: "craft",
@@ -29,8 +30,8 @@ const stories = [
     title: "Crafted differently.",
     description:
       "A thoughtful approach to clean energy. Plant-based caffeine, zero sugar, and ingredients chosen with intention.",
-    image: "/gallery_3_new.jpg",
-    alt: "Crafted energy",
+    image: ASSETS.difference.stories[2].image,
+    alt: ASSETS.difference.stories[2].alt,
   },
 ];
 

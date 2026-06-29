@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { ASSETS } from "@/lib/assets";
 
 interface LogoProps {
   className?: string;
@@ -12,7 +13,7 @@ interface LogoProps {
 export function Logo({ className, priority = false }: LogoProps) {
   return (
     <Image
-      src="/assets/Xude_Final_Logo.svg"
+      src={ASSETS.logo}
       alt="Xude Energy"
       fill
       priority={priority}
