@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-lemon-mint: var(--lemon-mint);
+  --color-mango-passion: var(--mango-passion);
+  --color-shop-accent: var(--shop-accent);
+  --font-sans: var(--font-dm-sans);
+  --font-heading: var(--font-dm-sans);
+}
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --muted: #737373;
+  --lemon-mint: #D4F46C;
+  --mango-passion: #FFB800;
+  --shop-accent: #F5F5F5;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #000000;
+  color: #FFFFFF;
+}
+
+/* Hide native scrollbar for a cleaner look while keeping scroll functionality */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+html {
+  scrollbar-width: none;
+}
+
+/* Custom cursor helpers */
+.cursor-none {
+  cursor: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* Horizontal scroll container with peeking items */
+.snap-scroll {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.snap-scroll::-webkit-scrollbar {
+  display: none;
+}
+.snap-start {
+  scroll-snap-align: start;
+}
+.snap-center {
+  scroll-snap-align: center;
+}
+
+/* Utility to clip sharp edges */
+.sharp {
+  border-radius: 0;
+}
+
+/* Image treatment for premium look */
+.img-cover {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Marquee animation for reviews */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Stagger fade-up utility */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animated gradient text for hero hook */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+.text-gradient-hook {
+  background: linear-gradient(90deg, #D4F46C, #00E676, #D4F46C, #FFB800, #D4F46C);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 5s ease-in-out infinite;
+}
+
