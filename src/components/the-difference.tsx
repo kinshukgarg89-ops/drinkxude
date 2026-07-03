@@ -73,19 +73,19 @@ export function TheDifference() {
       <section ref={containerRef} className="relative h-[300vh] w-full bg-background">
         {/* 1. THE TRACK: 300vh forces a long scroll distance. The user is trapped scrolling this height. */}
         
-        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-10"> 
+        <div className="sticky top-[10vh] h-[90vh] w-full flex items-center justify-center overflow-x-clip px-4 sm:px-6 lg:px-10"> 
           {/* 2. THE PINNED VIEW: This locks to the screen while the user scrolls down the 300vh track. */}
           
-          <div className="relative w-full max-w-5xl h-[700px] md:h-[500px]"> 
+          <div className="relative w-full max-w-5xl h-[70dvh] max-h-[600px] md:h-[600px]"> 
             {/* 3. THE STAGE: Cards go here. */}
 
             {/* Card 3 (Bottom Layer) - Doesn't move */}
             <div className="absolute inset-0 z-10">
-              <div className="bg-[#FAFAFA] border border-black/10 shadow-xl rounded-2xl p-3 md:p-4 w-full h-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 overflow-hidden">
-                <div className="relative h-full min-h-[300px] md:min-h-0 overflow-hidden rounded-xl bg-[#f5f5f5] border border-black/5">
+              <div className="bg-[#FAFAFA] border border-black/10 shadow-xl rounded-2xl p-3 md:p-4 w-full h-full flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-hidden">
+                <div className="relative h-full flex-shrink min-h-0 overflow-hidden rounded-xl bg-[#f5f5f5] border border-black/5">
                   <Image src={stories[2].image} alt={stories[2].alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                 </div>
-                <div className="flex flex-col justify-center py-2 md:py-4">
+                <div className="flex-shrink-0 flex flex-col justify-center py-2 md:py-4">
                   <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase text-muted mb-2 md:mb-3 block">
                     {stories[2].eyebrow}
                   </span>
@@ -104,11 +104,11 @@ export function TheDifference() {
               className="absolute inset-0 z-20 shadow-2xl rounded-2xl bg-background"
               style={{ y: card2Y, opacity: card2Opacity }}
             >
-              <div className="bg-[#FAFAFA] border border-black/10 shadow-xl rounded-2xl p-3 md:p-4 w-full h-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 overflow-hidden">
-                <div className="relative h-full min-h-[300px] md:min-h-0 overflow-hidden rounded-xl bg-[#f5f5f5] border border-black/5">
+              <div className="bg-[#FAFAFA] border border-black/10 shadow-xl rounded-2xl p-3 md:p-4 w-full h-full flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-hidden">
+                <div className="relative h-full flex-shrink min-h-0 overflow-hidden rounded-xl bg-[#f5f5f5] border border-black/5">
                   <Image src={stories[1].image} alt={stories[1].alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                 </div>
-                <div className="flex flex-col justify-center py-2 md:py-4">
+                <div className="flex-shrink-0 flex flex-col justify-center py-2 md:py-4">
                   <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase text-muted mb-2 md:mb-3 block">
                     {stories[1].eyebrow}
                   </span>
@@ -127,11 +127,11 @@ export function TheDifference() {
               className="absolute inset-0 z-30 shadow-2xl rounded-2xl bg-background"
               style={{ y: card1Y, opacity: card1Opacity }}
             >
-              <div className="bg-[#FAFAFA] border border-black/10 shadow-xl rounded-2xl p-3 md:p-4 w-full h-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 overflow-hidden">
-                <div className="relative h-full min-h-[300px] md:min-h-0 overflow-hidden rounded-xl bg-[#f5f5f5] border border-black/5">
+              <div className="bg-[#FAFAFA] border border-black/10 shadow-xl rounded-2xl p-3 md:p-4 w-full h-full flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-hidden">
+                <div className="relative h-full flex-shrink min-h-0 overflow-hidden rounded-xl bg-[#f5f5f5] border border-black/5">
                   <Image src={stories[0].image} alt={stories[0].alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                 </div>
-                <div className="flex flex-col justify-center py-2 md:py-4">
+                <div className="flex-shrink-0 flex flex-col justify-center py-2 md:py-4">
                   <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase text-muted mb-2 md:mb-3 block">
                     {stories[0].eyebrow}
                   </span>
