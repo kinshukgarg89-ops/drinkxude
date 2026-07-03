@@ -10,7 +10,6 @@ import { useCart } from "@/components/cart-provider";
 const navItems = [
   { name: "Story", id: "difference-section" },
   { name: "Ingredients", id: "inside-section" },
-  { name: "Reviews", id: "reviews-section" },
   { name: "Shop", id: "shop-section" },
 ];
 

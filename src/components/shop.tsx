@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
 import { CartDrawer } from "@/components/cart-drawer";
 import { ASSETS } from "@/lib/assets";
@@ -194,7 +194,7 @@ export function ShopSection() {
       <section
         id="shop-section"
         ref={sectionRef}
-        className="relative w-full bg-background py-24 md:py-32 overflow-hidden md:snap-start"
+        className="relative w-full bg-background pt-24 pb-8 md:pt-32 md:pb-12 overflow-hidden md:snap-start"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           {/* Header */}
@@ -242,49 +242,6 @@ export function ShopSection() {
           </motion.div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-4"
-          >
-            <motion.div
-              transition={{ duration: 0.3 }}
-              className="group bg-foreground text-background p-6 md:p-10 flex flex-col justify-between min-h-[200px] shadow-sm hover:shadow-2xl md:hover:-translate-y-1.5 transition-all duration-500 cursor-pointer"
-            >
-              <div>
-                <h3 className="text-2xl md:text-3xl font-heading font-black tracking-tight mb-2">
-                  Subscribe & Save 15%
-                </h3>
-                <p className="text-background/70 font-medium">
-                  Never run out of energy. Free shipping, skip or cancel anytime.
-                </p>
-              </div>
-              <button className="mt-6 self-start flex items-center gap-2 text-sm font-bold tracking-widest uppercase group-hover:gap-4 transition-all">
-                Learn More <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </motion.div>
-            <motion.div
-              transition={{ duration: 0.3 }}
-              className="group bg-white border border-black/10 p-6 md:p-10 flex flex-col justify-between min-h-[200px] shadow-sm hover:shadow-2xl hover:border-foreground/30 md:hover:-translate-y-1.5 transition-all duration-500 cursor-pointer"
-            >
-              <div>
-                <h3 className="text-2xl md:text-3xl font-heading font-black tracking-tight mb-2">
-                  Free Shipping
-                </h3>
-                <p className="text-muted font-medium">
-                  On all orders over $50. Delivered cold and ready to crack open.
-                </p>
-              </div>
-              <button className="mt-6 self-start flex items-center gap-2 text-sm font-bold tracking-widest uppercase group-hover:gap-4 transition-all">
-                Shop Now <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </motion.div>
-          </motion.div>
-        </div>
       </section>
 
       <CartDrawer />
