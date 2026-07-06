@@ -88,8 +88,8 @@ export function CustomCursor() {
           translateY: "-50%",
         }}
         animate={{
-          width: isHovering ? 64 : 12,
-          height: isHovering ? 64 : 12,
+          width: isHovering ? 40 : 12,
+          height: isHovering ? 40 : 12,
           opacity: isVisible ? 1 : 0,
         }}
         transition={{ duration: 0.15, ease: "easeOut" }}

@@ -4,41 +4,14 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Plus } from "lucide-react";
-import { useCart } from "@/components/cart-provider";
+import { useCart } from "@/context/CartProvider";
+import { useProducts, MappedProduct } from "@/hooks/useProducts";
 import { CartDrawer } from "@/components/cart-drawer";
-import { ASSETS } from "@/lib/assets";
 
-const products = [
-  {
-    id: "lemon-mint",
-    name: "Lemon Mint",
-    tagline: "Crisp. Refreshing. Sharp.",
-    description: "A bright citrus hit balanced with cool mint for instant refreshment.",
-    price: 34.99,
-    subtitle: "12-Pack",
-    color: "#D4F46C",
-    hoverText: "dark",
-    gradient: ["#D4F46C", "#a8d648"],
-    image: ASSETS.shop.products[0].image,
-  },
-  {
-    id: "mango-passion",
-    name: "Mango Passion",
-    tagline: "Tropical. Smooth. Vibrant.",
-    description: "Sun-ripe mango meets exotic passion fruit for a bold escape.",
-    price: 34.99,
-    subtitle: "12-Pack",
-    color: "#F97316",
-    hoverText: "dark",
-    gradient: ["#F97316", "#EA580C"],
-    image: ASSETS.shop.products[1].image,
-  },
-];
-
-function ProductImage({ product, isDesktop }: { product: (typeof products)[0]; isDesktop?: boolean }) {
+function ProductImage({ product, isDesktop }: { product: MappedProduct; isDesktop?: boolean }) {
   const [imgError, setImgError] = useState(false);
 
-  if (imgError) {
+  if (imgError || !product.image) {
     return (
       <div
         className="w-full h-full max-h-[260px] aspect-[3/4]"
@@ -65,22 +38,24 @@ function ProductImage({ product, isDesktop }: { product: (typeof products)[0]; i
   );
 }
 
-function ProductCard({ product, idx, isDesktop }: { product: (typeof products)[0]; idx: number; isDesktop?: boolean }) {
+function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx: number; isDesktop?: boolean }) {
   const { addItem, updateQty, items } = useCart();
-  const isLightHover = product.hoverText === "light";
-  const qty = items.find((i) => i.id === product.id)?.qty || 0;
+  
+  const [selectedVariantId, setSelectedVariantId] = useState<string>(product.variantId);
+  const [isAdding, setIsAdding] = useState(false);
+  const cartItem = items.find((i) => i.variantId === selectedVariantId);
+  const qty = cartItem?.qty || 0;
 
-  const handleAddToCart = () => {
-    addItem({
-      id: product.id,
-      name: product.name,
-      subtitle: product.subtitle,
-      price: product.price,
-      color: product.color,
-      gradient: product.gradient,
-      image: product.image,
-    });
+  const handleAddToCart = async () => {
+    if (selectedVariantId) {
+      setIsAdding(true);
+      await addItem(selectedVariantId, 1);
+      setIsAdding(false);
+    }
   };
+
+  const selectedVariant = product.variants.find(v => v.id === selectedVariantId) || product.variants[0];
+  const displayPrice = selectedVariant ? selectedVariant.price : product.price;
 
   return (
     <motion.div
@@ -88,59 +63,59 @@ function ProductCard({ product, idx, isDesktop }: { product: (typeof products)[0
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay: idx * (isDesktop ? 0.15 : 0.1) }}
-      className="group"
+      className="group h-full"
     >
       <motion.div
         whileTap={isDesktop ? { scale: 0.98 } : undefined}
         transition={{ duration: 0.35 }}
         style={{ "--product-color": product.color } as React.CSSProperties}
-        className={`relative h-[420px] md:h-[520px] bg-white border border-black/10 p-5 md:p-8 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-xl md:hover:bg-[var(--product-color)] md:hover:-translate-y-1.5 transition-all duration-500 ${
-          isDesktop ? "" : ""
-        }`}
+        className={`relative h-full min-h-[520px] md:min-h-[600px] bg-white border border-black/10 p-5 md:p-8 flex flex-col overflow-hidden shadow-sm hover:shadow-xl md:hover:-translate-y-1.5 transition-all duration-500`}
       >
-        {/* Image container - takes remaining height */}
-        <div className="flex-1 min-h-0 relative flex items-center justify-center">
+        {/* Fixed height image container */}
+        <div className="h-[220px] md:h-[260px] shrink-0 relative flex items-center justify-center">
           <ProductImage product={product} isDesktop={isDesktop} />
         </div>
 
-        {/* Product info */}
-        <div className="mt-4 md:mt-6">
-          <span
-            className={`text-xs font-bold tracking-widest uppercase text-muted mb-1 block transition-colors duration-500 ${
-              isLightHover ? "group-hover:text-white/70" : "group-hover:text-black/60"
-            }`}
-          >
+        {/* Product info - takes up available space */}
+        <div className="mt-4 md:mt-6 flex-grow">
+          <span className="text-xs font-bold tracking-widest uppercase text-muted mb-1 block">
             0{idx + 1} — {product.subtitle}
           </span>
-          <h3
-            className={`text-2xl md:text-3xl font-heading font-black tracking-tight mb-1 transition-colors duration-500 ${
-              isLightHover ? "group-hover:text-white" : "group-hover:text-black"
-            }`}
-          >
+          <h3 className="text-2xl md:text-3xl font-heading font-black tracking-tight mb-1 text-black">
             {product.name}
           </h3>
-          <p
-            className={`text-xs md:text-sm text-muted leading-relaxed transition-colors duration-500 ${
-              isLightHover ? "group-hover:text-white/70" : "group-hover:text-black/60"
-            }`}
-          >
+          <p className="text-xs md:text-sm text-muted leading-relaxed">
             {product.description}
           </p>
         </div>
 
-        {/* Bottom: price + Add to Cart / stepper */}
-        <div className="mt-auto pt-4 md:pt-6">
-          <p
-            className={`text-base md:text-lg font-bold mb-3 transition-colors duration-500 ${
-              isLightHover ? "group-hover:text-white/90" : "group-hover:text-black/80"
-            }`}
-          >
-            ${product.price.toFixed(2)}
-          </p>
-          {qty > 0 ? (
+        {/* Bottom: Variant Picker, Price + Add to Cart / stepper */}
+        <div className="mt-auto pt-4 md:pt-6 flex flex-col gap-3 shrink-0">
+          <div className="flex items-end justify-between gap-2">
+            <div>
+              <p className="text-base md:text-lg font-bold text-black/90">
+                ${displayPrice.toFixed(2)}
+              </p>
+            </div>
+            {product.variants.length > 1 && (
+              <select
+                value={selectedVariantId}
+                onChange={(e) => setSelectedVariantId(e.target.value)}
+                className="text-sm font-medium border border-black/10 bg-black/5 rounded-md px-2 py-1 outline-none transition-colors duration-500 group-hover:bg-black/10 group-hover:border-black/20"
+              >
+                {product.variants.map(v => (
+                  <option key={v.id} value={v.id} className="text-black bg-white">
+                    {v.title}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+          
+          {qty > 0 && cartItem ? (
             <div className="w-full flex items-stretch border-2 border-foreground bg-white text-foreground text-sm font-bold tracking-wide overflow-hidden">
               <button
-                onClick={() => updateQty(product.id, -1)}
+                onClick={() => updateQty(cartItem.id, -1)}
                 className="flex-1 py-3 md:py-4 hover:bg-black/5 active:bg-black/10 transition-colors"
                 aria-label="Decrease quantity"
               >
@@ -150,7 +125,7 @@ function ProductCard({ product, idx, isDesktop }: { product: (typeof products)[0
                 {qty}
               </span>
               <button
-                onClick={() => updateQty(product.id, 1)}
+                onClick={() => updateQty(cartItem.id, 1)}
                 className="flex-1 py-3 md:py-4 hover:bg-black/5 active:bg-black/10 transition-colors"
                 aria-label="Increase quantity"
               >
@@ -158,11 +133,18 @@ function ProductCard({ product, idx, isDesktop }: { product: (typeof products)[0
               </button>
             </div>
           ) : (
-              <button
-                onClick={handleAddToCart}
-                className="w-full py-3 md:py-4 text-sm font-bold tracking-wide flex items-center justify-center gap-2 border-2 border-foreground bg-white text-foreground transition-all duration-500 md:hover:scale-[1.02] group-hover:bg-foreground group-hover:text-background group-hover:border-foreground"
-              >
-              Add to Cart <Plus className="w-4 h-4" />
+            <button
+              onClick={handleAddToCart}
+              disabled={!selectedVariant?.availableForSale || isAdding}
+              className="w-full py-3 md:py-4 text-sm font-bold tracking-wide flex items-center justify-center gap-2 border-2 border-foreground bg-white text-foreground transition-all duration-500 md:hover:scale-[1.02] group-hover:bg-foreground group-hover:text-background group-hover:border-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isAdding ? (
+                "Adding..."
+              ) : selectedVariant?.availableForSale ? (
+                <>Add to Cart <Plus className="w-4 h-4" /></>
+              ) : (
+                "Out of Stock"
+              )}
             </button>
           )}
         </div>
@@ -188,6 +170,16 @@ export function ShopSection() {
     offset: ["start end", "end start"],
   });
   const canY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const { products, isLoading } = useProducts();
+
+  let desktopGridClass = "grid-cols-2 max-w-[1200px] mx-auto";
+  if (products.length === 1) {
+    desktopGridClass = "grid-cols-1 max-w-[600px] mx-auto";
+  } else if (products.length === 3) {
+    desktopGridClass = "grid-cols-3";
+  } else if (products.length >= 4) {
+    desktopGridClass = "grid-cols-4";
+  }
 
   return (
     <>
@@ -224,23 +216,31 @@ export function ShopSection() {
           </div>
         </div>
 
-        {/* Mobile: Horizontal scroll with peek */}
-        <MobileScrollRow>
-          {products.map((product, idx) => (
-            <div key={product.id} className="snap-start snap-always shrink-0 w-[72vw]">
-              <ProductCard product={product} idx={idx} />
-            </div>
-          ))}
-        </MobileScrollRow>
+        {isLoading ? (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-20 text-center font-bold text-muted">
+            Loading products...
+          </div>
+        ) : (
+          <>
+            {/* Mobile: Horizontal scroll with peek */}
+            <MobileScrollRow>
+              {products.map((product, idx) => (
+                <div key={product.id} className="snap-start snap-always shrink-0 w-[72vw]">
+                  <ProductCard product={product} idx={idx} />
+                </div>
+              ))}
+            </MobileScrollRow>
 
-        {/* Desktop: Grid */}
-        <div className="hidden md:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <motion.div style={{ y: canY }} className="grid grid-cols-2 gap-4">
-            {products.map((product, idx) => (
-              <ProductCard key={product.id} product={product} idx={idx} isDesktop />
-            ))}
-          </motion.div>
-        </div>
+            {/* Desktop: Grid */}
+            <div className="hidden md:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+              <motion.div style={{ y: canY }} className={`grid gap-4 ${desktopGridClass}`}>
+                {products.map((product, idx) => (
+                  <ProductCard key={product.id} product={product} idx={idx} isDesktop />
+                ))}
+              </motion.div>
+            </div>
+          </>
+        )}
 
       </section>
 

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { getLenis } from "@/lib/lenis";
 import { Logo } from "@/components/logo";
-import { useCart } from "@/components/cart-provider";
+import { useCart } from "@/context/CartProvider";
 
 const navItems = [
   { name: "Story", id: "difference-section" },

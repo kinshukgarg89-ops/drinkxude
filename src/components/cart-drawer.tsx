@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, X } from "lucide-react";
-import { useCart } from "@/components/cart-provider";
+import { useCart } from "@/context/CartProvider";
 
 function CartItemImage({ image, color, name }: { image: string; color: string; name: string }) {
   const [imgError, setImgError] = useState(false);
@@ -31,7 +31,18 @@ function CartItemImage({ image, color, name }: { image: string; color: string; n
 }
 
 export function CartDrawer() {
-  const { items, total, count, isOpen, setIsOpen, updateQty, removeItem } = useCart();
+  const { items, total, count, isOpen, setIsOpen, updateQty, removeItem, checkoutUrl } = useCart();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -58,7 +69,10 @@ export function CartDrawer() {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div 
+              className="flex-1 overflow-y-auto p-6 space-y-4 cart-scroll overscroll-contain" 
+              data-lenis-prevent="true"
+            >
               {items.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center">
                   <p className="text-muted font-medium">Your cart is empty.</p>
@@ -119,7 +133,12 @@ export function CartDrawer() {
                   <span className="text-muted font-medium">Total</span>
                   <span className="text-3xl font-heading font-black">${total.toFixed(2)}</span>
                 </div>
-                <button className="w-full py-4 bg-foreground text-background font-bold tracking-wide hover:bg-foreground/85 md:hover:scale-[1.01] transition-all">
+                <button
+                  onClick={() => {
+                    if (checkoutUrl) window.location.href = checkoutUrl;
+                  }}
+                  className="w-full py-4 bg-foreground text-background font-bold tracking-wide hover:bg-foreground/85 md:hover:scale-[1.01] transition-all"
+                >
                   Checkout
                 </button>
               </div>

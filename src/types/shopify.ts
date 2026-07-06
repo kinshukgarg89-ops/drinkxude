@@ -10,7 +10,7 @@ export interface ShopifyVariant {
 
 export interface ShopifyImage {
   url: string;
-  altText: string;
+  altText: string | null;
   width: number;
   height: number;
 }
@@ -34,6 +34,24 @@ export interface ShopifyProduct {
   };
 }
 
+export interface ShopifyCartLine {
+  id: string;
+  quantity: number;
+  merchandise: {
+    id: string;
+    title: string;
+    product: {
+      title: string;
+      handle: string;
+      featuredImage: ShopifyImage | null;
+    };
+    price: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+}
+
 export interface ShopifyCart {
   id: string;
   checkoutUrl: string;
@@ -45,18 +63,7 @@ export interface ShopifyCart {
   };
   lines: {
     edges: {
-      node: {
-        id: string;
-        quantity: number;
-        merchandise: {
-          id: string;
-          title: string;
-          product: {
-            title: string;
-            handle: string;
-          };
-        };
-      };
+      node: ShopifyCartLine;
     }[];
   };
 }

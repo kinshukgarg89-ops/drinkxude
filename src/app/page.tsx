@@ -10,7 +10,7 @@ import { ShopSection } from "@/components/shop";
 import { JoinUsSection } from "@/components/join-us";
 import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
-import { CartProvider } from "@/components/cart-provider";
+import { CartProvider } from "@/context/CartProvider";
 
 export default function Home() {
   return (

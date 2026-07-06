@@ -47,6 +47,23 @@ html {
   scrollbar-width: none;
 }
 
+/* Explicit scrollbar for cart page */
+.cart-scroll::-webkit-scrollbar {
+  width: 6px;
+  display: block;
+}
+.cart-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cart-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.cart-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
 /* Custom cursor helpers */
 .cursor-none {
   cursor: none;
