@@ -43,27 +43,14 @@ export const ASSETS = {
   },
 
   inside: {
-    video: "/assets/xude_ingred.mp4",
+    videoMobile: "/assets/IngredLand.mp4", // Ensure this is the correct mobile video name
+    videoDesktop: "/assets/Xudehor.mp4", // Ensure this is the correct desktop video name
   },
 
-  shop: {
-    products: [
-      {
-        id: "lemon-mint",
-        image: "/assets/Xude_coverscrenn.png",
-        alt: "Lemon Mint 12-Pack",
-      },
-      {
-        id: "mango-passion",
-        image: "/assets/XudeMango.png",
-        alt: "Mango Passion 12-Pack",
-      },
-    ],
-  },
 
   joinUs: {
-    teamVideo: "/assets/team-video.mp4",
-    partnerVideo: "/assets/partner-video.mp4",
+    teamVideo: "/assets/Distribute.mp4",
+    partnerVideo: "/assets/Cash.mp4",
   },
 } as const;
 

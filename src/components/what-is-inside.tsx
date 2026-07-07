@@ -61,13 +61,23 @@ export function WhatIsInside() {
             className="order-1 lg:order-1"
           >
             <div className="relative aspect-[9/16] md:aspect-video w-full bg-background/10 border border-background/10 overflow-hidden">
+              {/* Mobile Video */}
               <video
-                src={ASSETS.inside.video}
+                src={ASSETS.inside.videoMobile}
                 autoPlay
                 muted
                 loop
                 playsInline
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover md:hidden"
+              />
+              {/* Desktop Video */}
+              <video
+                src={ASSETS.inside.videoDesktop}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="hidden md:block w-full h-full object-cover"
               />
             </div>
           </motion.div>

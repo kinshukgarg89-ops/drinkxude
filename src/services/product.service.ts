@@ -4,10 +4,10 @@ import { ShopifyProduct } from "../types/shopify";
 
 export async function getProducts(): Promise<ShopifyProduct[]> {
   try {
-    const { body } = await shopifyClient.fetch<{ data: { products: { edges: { node: ShopifyProduct }[] } } }>({
+    const { body } = await shopifyClient.fetch<{ data: { collection: { products: { edges: { node: ShopifyProduct }[] } } } }>({
       query: getProductsQuery,
     });
-    return body.data.products.edges.map((edge) => edge.node);
+    return body.data.collection?.products.edges.map((edge) => edge.node) || [];
   } catch (error) {
     console.error("Error fetching products:", error);
     return [];

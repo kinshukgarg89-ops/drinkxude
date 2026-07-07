@@ -1,33 +1,35 @@
 export const getProductsQuery = `
   query getProducts {
-    products(first: 10) {
-      edges {
-        node {
-          id
-          handle
-          title
-          description
-          priceRange {
-            minVariantPrice {
-              amount
-              currencyCode
+    collection(handle: "frontpage") {
+      products(first: 10) {
+        edges {
+          node {
+            id
+            handle
+            title
+            description
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
             }
-          }
-          featuredImage {
-            url
-            altText
-            width
-            height
-          }
-          variants(first: 10) {
-            edges {
-              node {
-                id
-                title
-                availableForSale
-                price {
-                  amount
-                  currencyCode
+            featuredImage {
+              url
+              altText
+              width
+              height
+            }
+            variants(first: 10) {
+              edges {
+                node {
+                  id
+                  title
+                  availableForSale
+                  price {
+                    amount
+                    currencyCode
+                  }
                 }
               }
             }

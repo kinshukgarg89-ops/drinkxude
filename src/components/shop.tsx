@@ -79,7 +79,7 @@ function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx:
         {/* Product info - takes up available space */}
         <div className="mt-4 md:mt-6 flex-grow">
           <span className="text-xs font-bold tracking-widest uppercase text-muted mb-1 block">
-            0{idx + 1} — {product.subtitle}
+            0{idx + 1}
           </span>
           <h3 className="text-2xl md:text-3xl font-heading font-black tracking-tight mb-1 text-black">
             {product.name}

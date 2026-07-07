@@ -75,7 +75,7 @@ function OpportunityCard({ opportunity, index }: { opportunity: (typeof opportun
           </span>
         </div>
 
-        {/* Video / placeholder on hover */}
+        {/* Video on hover */}
         {isClient && !isMobile && (
           <div
             className={`absolute inset-0 flex items-center justify-center bg-black transition-opacity duration-300 ${
@@ -88,12 +88,9 @@ function OpportunityCard({ opportunity, index }: { opportunity: (typeof opportun
               muted
               loop
               playsInline
-              preload="none"
-              className="absolute inset-0 w-full h-full object-cover opacity-60"
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover"
             />
-            <span className="relative z-10 text-white/80 text-xs md:text-sm font-medium tracking-widest uppercase">
-              Video coming soon
-            </span>
           </div>
         )}
       </div>
