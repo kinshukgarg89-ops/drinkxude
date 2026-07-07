@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getProducts } from '../services/product.service';
 import { ShopifyProduct } from '../types/shopify';
-import { ASSETS } from '../lib/assets';
-
 // Local UI mappings for styling products based on their handle
 const PRODUCT_UI_MAPPING: Record<string, { subtitle: string; color: string; hoverText: string; gradient: string[]; image?: string }> = {
   "lemon-mint": {
@@ -10,14 +8,14 @@ const PRODUCT_UI_MAPPING: Record<string, { subtitle: string; color: string; hove
     color: "#D4F46C",
     hoverText: "dark",
     gradient: ["#D4F46C", "#a8d648"],
-    image: ASSETS?.shop?.products?.[0]?.image, // Fallback local image if needed
+    image: "/assets/Xude_coverscrenn.png", // Fallback local image if needed
   },
   "mango-passion": {
     subtitle: "12-Pack",
     color: "#F97316",
     hoverText: "dark",
     gradient: ["#F97316", "#EA580C"],
-    image: ASSETS?.shop?.products?.[1]?.image, // Fallback local image if needed
+    image: "/assets/XudeMango.png", // Fallback local image if needed
   },
 };
 
