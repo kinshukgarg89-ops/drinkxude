@@ -78,7 +78,7 @@ function OpportunityCard({ opportunity, index }: { opportunity: (typeof opportun
         {/* Video on hover */}
         {isClient && !isMobile && (
           <div
-            className={`absolute inset-0 flex items-center justify-center bg-black transition-opacity duration-300 ${
+            className={`absolute inset-0 flex items-center justify-center bg-black transition-opacity duration-300 pointer-events-none ${
               isHovered ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -89,7 +89,7 @@ function OpportunityCard({ opportunity, index }: { opportunity: (typeof opportun
               loop
               playsInline
               preload="auto"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
           </div>
         )}
