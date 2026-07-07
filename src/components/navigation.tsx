@@ -101,9 +101,13 @@ export function Navigation() {
               }`}
             >
               {navItems.map((item) => (
-                <button
+                <a
                   key={item.name}
-                  onClick={() => scrollTo(item.id)}
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(item.id);
+                  }}
                   className={`relative px-4 py-1.5 text-sm font-medium tracking-wide rounded-full transition-colors group ${
                     isSticky
                       ? "text-foreground/70 hover:text-foreground hover:bg-black/5"
@@ -111,7 +115,7 @@ export function Navigation() {
                   }`}
                 >
                   {item.name}
-                </button>
+                </a>
               ))}
             </div>
 
@@ -147,17 +151,21 @@ export function Navigation() {
               <nav className="flex flex-col items-center gap-4 w-full">
                 {[{ name: "Home", id: "hero-section" }, ...navItems].map(
                   (item, i) => (
-                    <motion.button
+                    <motion.a
                       key={item.name}
-                      onClick={() => scrollTo(item.id)}
+                      href={`#${item.id}`}
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        scrollTo(item.id);
+                      }}
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 20 }}
                       transition={{ delay: i * 0.05, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-center text-4xl font-heading font-black tracking-tight py-2 border-b border-black/10 md:hover:pl-4 transition-all w-full"
+                      className="block text-center text-4xl font-heading font-black tracking-tight py-2 border-b border-black/10 md:hover:pl-4 transition-all w-full"
                     >
                       {item.name}
-                    </motion.button>
+                    </motion.a>
                   )
                 )}
               </nav>

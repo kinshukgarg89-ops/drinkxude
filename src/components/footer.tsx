@@ -103,12 +103,16 @@ export function Footer() {
             <ul className="space-y-4">
               {footerLinks.explore.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => scrollTo(link.href)}
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollTo(link.href);
+                    }}
                     className="text-background/80 hover:text-background font-medium transition-colors hover:translate-x-1 inline-block"
                   >
                     {link.name}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
