@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# XUDE Website
 
-## Getting Started
+**Website:** https://drinkxude.com/
 
-First, run the development server:
+## Beyond The Ordinary
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This repository powers the official website of **XUDE**, a new-generation Indian functional energy drink brand built for people of all class.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+XUDE exists for athletes, creators, professionals, entrepreneurs, students, and everyday achievers who needs a break from every day. It is more than an energy drink. It represents a mindset of accepting limits, embracing challenges, and choosing progress over comfort.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The website has been designed to communicate that philosophy through an immersive digital experience that reflects the brand's bold, energetic, and modern identity.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## About XUDE
 
-To learn more about Next.js, take a look at the following resources:
+XUDE is a functional beverage brand focused on delivering clean, sustained energy without unnecessary compromises. Every product is created with carefully selected ingredients that support an active lifestyle while maintaining great taste.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Unlike conventional energy drinks that rely heavily on sugar and artificial additives, XUDE is built around a more mindful approach to energy and performance.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Key product highlights include:
 
-## Deploy on Vercel
+* Zero Sugar
+* Plant-Based Energy
+* No Artificial Colours
+* No Emulsifiers
+* Supports Active Metabolism
+* Enriched with Essential Vitamins
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Whether you're heading to the gym, working through long hours, creating your next idea, or preparing for your next challenge, XUDE is designed to keep you moving.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+## Website Purpose
+
+The XUDE website serves as the brand's primary digital platform where visitors can:
+
+* Discover the XUDE story and philosophy
+* Explore product benefits and ingredients
+* Learn about functional nutrition
+* Experience the brand through engaging visual storytelling
+* Browse available flavours
+* Purchase products directly
+* Stay connected with the growing XUDE community
+
+The experience is intentionally crafted to feel energetic, premium, and modern while remaining fast, responsive, and accessible across all devices.
+
+---
+
+## Technology
+
+This project is built using modern web technologies.
+
+* Next.js
+* React
+* TypeScript
+* Responsive Design
+* Performance-focused architecture
+* Optimized media delivery
+* SEO-friendly structure
+
+---
+
+## Design Philosophy
+
+The visual language of the website is inspired by movement, confidence, and ambition.
+
+Every section is designed to reinforce the XUDE identity through clean layouts, purposeful animations, bold typography, and immersive storytelling. Rather than simply presenting products, the experience communicates what the brand stands for: energy with purpose.
+
+---
+
+## Mission
+
+To inspire people to live actively, think boldly, and push beyond ordinary limits by delivering functional beverages that support both physical performance and everyday ambition.
+
+---
+
+## Tagline
+
+**The energy drink, You'll finally say YES to.**
