@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ShoppingCart } from "lucide-react";
+import Link from "next/link";
 import { getLenis } from "@/lib/lenis";
 import { Logo } from "@/components/logo";
 import { useCart } from "@/context/CartProvider";
@@ -35,11 +36,12 @@ function CartButton({ isSticky }: { isSticky: boolean }) {
   );
 }
 
-export function Navigation() {
+export function Navigation({ alwaysSticky = false }: { alwaysSticky?: boolean } = {}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
+  const [isSticky, setIsSticky] = useState(alwaysSticky);
 
   useEffect(() => {
+    if (alwaysSticky) return;
     const handleScroll = () => {
       const heroHeight = window.innerHeight * 0.9;
       setIsSticky(window.scrollY > heroHeight);
@@ -47,7 +49,7 @@ export function Navigation() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [alwaysSticky]);
 
   useEffect(() => {
     if (isOpen) {
@@ -83,12 +85,12 @@ export function Navigation() {
         <div className="w-full px-4 sm:px-6 lg:px-10">
           <nav className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <button
-              onClick={() => scrollTo("hero-section")}
-              className="relative h-8 md:h-9 w-28 md:w-32"
+            <Link
+              href="/"
+              className="relative h-8 md:h-9 w-28 md:w-32 block"
             >
               <Logo priority className={`!h-full !w-auto transition-all duration-500 ${isSticky ? "" : "invert"}`} />
-            </button>
+            </Link>
 
             {/* Desktop Nav */}
             <div
@@ -102,8 +104,13 @@ export function Navigation() {
                   key={item.name}
                   href={`#${item.id}`}
                   onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo(item.id);
+                    // Check if we are not on home page
+                    if (window.location.pathname !== "/") {
+                      window.location.href = `/#${item.id}`;
+                    } else {
+                      e.preventDefault();
+                      scrollTo(item.id);
+                    }
                   }}
                   className={`relative px-4 py-1.5 text-sm font-medium tracking-wide rounded-full transition-colors group ${isSticky
                     ? "text-foreground/70 hover:text-foreground hover:bg-black/5"
