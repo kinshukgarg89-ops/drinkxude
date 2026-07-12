@@ -8,36 +8,35 @@ export const ASSETS = {
   hero: {
     slides: [
       {
-        mobile: "/assets/pimg1.png",
+        mobile: "/assets/pi1.png",
         desktop: "/assets/img1.png",
-        alt: "Xude Energy reimagined",
+        alt: "Mother and child analogy",
       },
       {
-        mobile: "/assets/pimg3.png",
-        desktop: "/assets/img3.png",
-        alt: "Built for every energy",
+        mobile: "/assets/pi2.png",
+        desktop: "/assets/img2.png",
+        alt: "Heavy weight analogy",
       },
-      {
-        mobile: "/assets/img4.png",
-        desktop: "/assets/img4.png",
-        alt: "Adventure with Xude",
-      },
+
     ],
   },
 
   difference: {
     stories: [
       {
-        image: "/gallery_1_new.jpg",
-        alt: "Corporate energy",
+        mobile: "/assets/pst1.png",
+        desktop: "/assets/st1.png",
+        alt: "Fruit First",
       },
       {
-        image: "/gallery_2_new.jpg",
-        alt: "Fruit inspiration",
+        mobile: "/assets/ps2.png",
+        desktop: "/assets/s2.png",
+        alt: "Complement to energy",
       },
       {
-        image: "/gallery_3_new.jpg",
-        alt: "Crafted energy",
+        mobile: "/assets/ps3.png",
+        desktop: "/assets/s3.png",
+        alt: "Purposeful Ingredients",
       },
     ],
   },

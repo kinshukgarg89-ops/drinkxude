@@ -30,7 +30,7 @@ const ingredients = [
 
 export function WhatIsInside() {
   return (
-    <section id="inside-section" className="relative w-full bg-foreground text-background py-24 md:py-32 px-4 sm:px-6 lg:px-10 overflow-hidden md:snap-start">
+    <section id="inside-section" className="relative w-full bg-foreground text-background py-24 md:py-32 px-4 sm:px-6 lg:px-10 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div

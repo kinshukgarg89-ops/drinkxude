@@ -19,11 +19,10 @@ function CartButton({ isSticky }: { isSticky: boolean }) {
   return (
     <button
       onClick={() => setIsOpen(true)}
-      className={`relative flex items-center justify-center transition-colors ${
-        isSticky
-          ? "text-foreground hover:bg-black/5"
-          : "text-white hover:bg-white/10"
-      } w-10 h-10 md:w-11 md:h-11`}
+      className={`relative flex items-center justify-center transition-colors ${isSticky
+        ? "text-foreground hover:bg-black/5"
+        : "text-white hover:bg-white/10"
+        } w-10 h-10 md:w-11 md:h-11`}
       aria-label="Open cart"
     >
       <ShoppingCart className="w-5 h-5 md:w-6 md:h-6" />
@@ -78,9 +77,8 @@ export function Navigation() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isSticky ? "bg-white/95 backdrop-blur-md border-b border-black/5" : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isSticky ? "bg-white/95 backdrop-blur-md border-b border-black/5" : "bg-transparent"
+          }`}
       >
         <div className="w-full px-4 sm:px-6 lg:px-10">
           <nav className="flex items-center justify-between h-16 md:h-20">
@@ -94,11 +92,10 @@ export function Navigation() {
 
             {/* Desktop Nav */}
             <div
-              className={`hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full transition-all duration-500 ${
-                isSticky
-                  ? "bg-transparent"
-                  : "bg-white/10 backdrop-blur-md border border-white/20"
-              }`}
+              className={`hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full transition-all duration-500 md:relative md:-left-[60px] ${isSticky
+                ? "bg-transparent"
+                : "bg-white/10 backdrop-blur-md border border-white/20"
+                }`}
             >
               {navItems.map((item) => (
                 <a
@@ -108,11 +105,10 @@ export function Navigation() {
                     e.preventDefault();
                     scrollTo(item.id);
                   }}
-                  className={`relative px-4 py-1.5 text-sm font-medium tracking-wide rounded-full transition-colors group ${
-                    isSticky
-                      ? "text-foreground/70 hover:text-foreground hover:bg-black/5"
-                      : "text-white/90 hover:text-white hover:bg-white/10"
-                  }`}
+                  className={`relative px-4 py-1.5 text-sm font-medium tracking-wide rounded-full transition-colors group ${isSticky
+                    ? "text-foreground/70 hover:text-foreground hover:bg-black/5"
+                    : "text-white/90 hover:text-white hover:bg-white/10"
+                    }`}
                 >
                   {item.name}
                 </a>
@@ -125,9 +121,8 @@ export function Navigation() {
 
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`md:hidden p-2 -mr-2 transition-colors ${
-                  isOpen ? "text-foreground" : isSticky ? "text-foreground" : "text-white"
-                }`}
+                className={`md:hidden p-2 -mr-2 transition-colors ${isOpen ? "text-foreground" : isSticky ? "text-foreground" : "text-white"
+                  }`}
                 aria-label="Toggle menu"
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

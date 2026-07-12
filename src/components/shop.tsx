@@ -99,6 +99,7 @@ function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx:
             </div>
             {product.variants.length > 1 && (
               <select
+                aria-label={`Select variant for ${product.name}`}
                 value={selectedVariantId}
                 onChange={(e) => setSelectedVariantId(e.target.value)}
                 className="text-sm font-medium border border-black/10 bg-black/5 rounded-md px-2 py-1 outline-none transition-colors duration-500 group-hover:bg-black/10 group-hover:border-black/20"
@@ -186,7 +187,7 @@ export function ShopSection() {
       <section
         id="shop-section"
         ref={sectionRef}
-        className="relative w-full bg-background pt-24 pb-8 md:pt-32 md:pb-12 overflow-hidden md:snap-start"
+        className="relative w-full bg-background pt-24 pb-8 md:pt-32 md:pb-12 overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           {/* Header */}
