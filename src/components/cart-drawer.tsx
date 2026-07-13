@@ -92,7 +92,7 @@ export function CartDrawer() {
                     </button>
                     <div className="flex gap-4">
                       <div
-                        className="relative w-20 aspect-square shrink-0"
+                        className="relative w-20 h-20 shrink-0"
                         style={{ backgroundColor: item.color }}
                       >
                         <CartItemImage image={item.image} color={item.color} name={item.name} />
@@ -100,25 +100,23 @@ export function CartDrawer() {
                       <div className="flex-1 min-w-0 pr-8">
                         <h4 className="font-bold truncate">{item.name}</h4>
                         <p className="text-sm text-muted truncate">{item.subtitle}</p>
-                        <div className="flex items-center justify-between gap-3 mt-3">
-                          <div className="flex items-center gap-3">
-                            <button
-                              onClick={() => updateQty(item.id, -1)}
-                              className="p-1 hover:bg-black/5 transition-colors rounded-full"
-                            >
-                              <Minus className="w-4 h-4" />
-                            </button>
-                            <span className="font-bold w-6 text-center">{item.qty}</span>
-                            <button
-                              onClick={() => updateQty(item.id, 1)}
-                              className="p-1 hover:bg-black/5 transition-colors rounded-full"
-                            >
-                              <Plus className="w-4 h-4" />
-                            </button>
-                          </div>
-                          <div className="font-bold whitespace-nowrap">
-                            ₹{(item.price * item.qty).toFixed(2)}
-                          </div>
+                        <p className="font-bold mt-1 text-sm">
+                          ₹{(item.price * item.qty).toFixed(2)}
+                        </p>
+                        <div className="flex items-center gap-3 mt-3">
+                          <button
+                            onClick={() => updateQty(item.id, -1)}
+                            className="p-1 hover:bg-black/5 transition-colors rounded-full"
+                          >
+                            <Minus className="w-4 h-4" />
+                          </button>
+                          <span className="font-bold w-6 text-center">{item.qty}</span>
+                          <button
+                            onClick={() => updateQty(item.id, 1)}
+                            className="p-1 hover:bg-black/5 transition-colors rounded-full"
+                          >
+                            <Plus className="w-4 h-4" />
+                          </button>
                         </div>
                       </div>
                     </div>
