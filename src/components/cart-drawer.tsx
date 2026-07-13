@@ -69,8 +69,8 @@ export function CartDrawer() {
               </button>
             </div>
 
-            <div 
-              className="flex-1 overflow-y-auto p-6 space-y-4 cart-scroll overscroll-contain" 
+            <div
+              className="flex-1 overflow-y-auto p-6 space-y-4 cart-scroll overscroll-contain"
               data-lenis-prevent="true"
             >
               {items.length === 0 ? (
