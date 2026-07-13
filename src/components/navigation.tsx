@@ -94,7 +94,7 @@ export function Navigation({ alwaysSticky = false }: { alwaysSticky?: boolean } 
 
             {/* Desktop Nav */}
             <div
-              className={`hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full transition-all duration-500 md:relative md:-left-[60px] ${isSticky
+              className={`hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full transition-all duration-500 md:relative md:-left-[50px] ${isSticky
                 ? "bg-transparent"
                 : "bg-white/10 backdrop-blur-md border border-white/20"
                 }`}

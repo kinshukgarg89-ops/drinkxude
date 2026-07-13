@@ -34,16 +34,16 @@ export function Hero() {
   };
 
   return (
-    <section 
-      id="hero-section" 
+    <section
+      id="hero-section"
       className="relative min-h-[100svh] w-full overflow-hidden bg-black"
       onTouchStart={() => setIsPaused(true)}
       onTouchEnd={() => setIsPaused(false)}
       onTouchCancel={() => setIsPaused(false)}
     >
       {/* Background Images with Parallax + Slide Transition */}
-      <motion.div 
-        style={{ y }} 
+      <motion.div
+        style={{ y }}
         className="absolute inset-0 z-0"
       >
         <AnimatePresence initial={false} mode="sync">
@@ -89,7 +89,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="w-1/2 mx-auto min-w-[180px] relative md:-left-[13px]"
+              className="w-1/2 mx-auto min-w-[180px] relative md:-left-[8px]"
             >
               <button
                 onClick={() => scrollTo("shop-section")}

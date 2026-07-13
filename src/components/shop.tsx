@@ -40,7 +40,7 @@ function ProductImage({ product, isDesktop }: { product: MappedProduct; isDeskto
 
 function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx: number; isDesktop?: boolean }) {
   const { addItem, updateQty, items } = useCart();
-  
+
   const [selectedVariantId, setSelectedVariantId] = useState<string>(product.variantId);
   const [isAdding, setIsAdding] = useState(false);
   const cartItem = items.find((i) => i.variantId === selectedVariantId);
@@ -112,7 +112,7 @@ function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx:
               </select>
             )}
           </div>
-          
+
           {qty > 0 && cartItem ? (
             <div className="w-full flex items-stretch border-2 border-foreground bg-white text-foreground text-sm font-bold tracking-wide overflow-hidden">
               <button
@@ -212,7 +212,7 @@ export function ShopSection() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-lg text-muted font-medium max-w-sm"
             >
-              Pick your flavour and grab a 12-pack. Clean energy, delivered.
+              Pick your flavour and grab a pack.
             </motion.p>
           </div>
         </div>

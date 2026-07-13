@@ -9,7 +9,7 @@ const ingredients = [
   {
     icon: Leaf,
     title: "Plant-Based Energy",
-    description: "Caffeine from green tea and yerba mate for smooth, sustained focus.",
+    description: "Caffeine from multiple plant sources, green tea and coffee bean extract for smooth, sustained focus without the spike.",
   },
   {
     icon: Droplets,
