@@ -117,7 +117,7 @@ export function CartDrawer() {
                             </button>
                           </div>
                           <div className="font-bold whitespace-nowrap">
-                            ${(item.price * item.qty).toFixed(2)}
+                            ₹{(item.price * item.qty).toFixed(2)}
                           </div>
                         </div>
                       </div>
@@ -131,7 +131,7 @@ export function CartDrawer() {
               <div className="p-6 border-t border-black/10">
                 <div className="flex justify-between items-center mb-6">
                   <span className="text-muted font-medium">Total</span>
-                  <span className="text-3xl font-heading font-black">${total.toFixed(2)}</span>
+                  <span className="text-3xl font-heading font-black">₹{total.toFixed(2)}</span>
                 </div>
                 <button
                   onClick={() => {

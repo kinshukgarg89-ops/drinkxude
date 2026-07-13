@@ -94,7 +94,7 @@ function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx:
           <div className="flex items-end justify-between gap-2">
             <div>
               <p className="text-base md:text-lg font-bold text-black/90">
-                ${displayPrice.toFixed(2)}
+                ₹{displayPrice.toFixed(2)}
               </p>
             </div>
             {product.variants.length > 1 && (
