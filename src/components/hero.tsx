@@ -34,14 +34,17 @@ export function Hero() {
   };
 
   return (
-    <section id="hero-section" className="relative min-h-[100svh] w-full overflow-hidden bg-black">
+    <section 
+      id="hero-section" 
+      className="relative min-h-[100svh] w-full overflow-hidden bg-black"
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+      onTouchCancel={() => setIsPaused(false)}
+    >
       {/* Background Images with Parallax + Slide Transition */}
       <motion.div 
         style={{ y }} 
-        className="absolute inset-0 z-0 cursor-pointer"
-        onTouchStart={() => setIsPaused(true)}
-        onTouchEnd={() => setIsPaused(false)}
-        onTouchCancel={() => setIsPaused(false)}
+        className="absolute inset-0 z-0"
       >
         <AnimatePresence initial={false} mode="sync">
           {heroSlides.map((slide, idx) =>
