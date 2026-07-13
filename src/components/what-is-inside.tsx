@@ -8,8 +8,8 @@ import { ASSETS } from "@/lib/assets";
 const ingredients = [
   {
     icon: Leaf,
-    title: "Plant-Based Energy",
-    description: "Caffeine from multiple plant sources, green tea and coffee bean extract for smooth, sustained focus without the spike.",
+    title: "Plant-Based Caffeine",
+    description: "Caffeine from multiple plant sources, green tea and coffee bean extract for smooth, sustained focus.",
   },
   {
     icon: Droplets,
