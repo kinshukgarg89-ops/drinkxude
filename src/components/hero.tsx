@@ -10,17 +10,18 @@ const heroSlides = ASSETS.hero.slides;
 
 export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 800], [0, 200]);
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   useEffect(() => {
-    if (heroSlides.length <= 1) return;
+    if (heroSlides.length <= 1 || isPaused) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused]);
 
   const scrollTo = (id: string) => {
     const lenis = getLenis();
@@ -35,7 +36,13 @@ export function Hero() {
   return (
     <section id="hero-section" className="relative min-h-[100svh] w-full overflow-hidden bg-black">
       {/* Background Images with Parallax + Slide Transition */}
-      <motion.div style={{ y }} className="absolute inset-0 z-0">
+      <motion.div 
+        style={{ y }} 
+        className="absolute inset-0 z-0 cursor-pointer"
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+        onTouchCancel={() => setIsPaused(false)}
+      >
         <AnimatePresence initial={false} mode="sync">
           {heroSlides.map((slide, idx) =>
             idx === currentSlide ? (
