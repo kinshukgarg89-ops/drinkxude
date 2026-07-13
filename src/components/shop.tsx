@@ -157,7 +157,7 @@ function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx:
 function MobileScrollRow({ children }: { children: React.ReactNode }) {
   return (
     <div className="md:hidden w-full">
-      <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-6 before:content-[''] before:shrink-0 before:w-0 sm:before:w-2 after:content-[''] after:shrink-0 after:w-0 sm:after:w-2">
+      <div className="flex gap-4 overflow-x-auto overflow-y-hidden scrollbar-hide pb-6 before:content-[''] before:shrink-0 before:w-0 sm:before:w-2 after:content-[''] after:shrink-0 after:w-0 sm:after:w-2">
         {children}
       </div>
     </div>
