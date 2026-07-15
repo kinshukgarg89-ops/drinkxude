@@ -72,7 +72,7 @@ function StoryBlock({
   return (
     <div
       ref={ref}
-      className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center py-4 md:py-6 ${isReversed ? "md:[direction:rtl]" : ""
+      className={`grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-12 items-center py-4 md:py-6 ${isReversed ? "md:[direction:rtl]" : ""
         }`}
     >
       {/* Image with clean frame */}
@@ -80,7 +80,9 @@ function StoryBlock({
         style={{ y }}
         whileHover={{ scale: 1.03 }}
         transition={{ duration: 0.5 }}
-        className={`w-[90%] max-w-[340px] md:max-w-[380px] mx-auto group p-2 md:p-3 rounded-2xl bg-[#FAFAFA] border border-black/10 shadow-xl cursor-pointer ${isReversed ? "md:[direction:ltr]" : ""
+        className={`max-w-[340px] md:max-w-[380px] group p-2 md:p-3 rounded-2xl bg-[#FAFAFA] border border-black/10 shadow-xl cursor-pointer ${isReversed
+          ? "w-[85%] ml-auto mr-0 md:mx-auto md:w-[90%] md:[direction:ltr]"
+          : "w-[85%] mr-auto ml-0 md:mx-auto md:w-[90%]"
           }`}
       >
         <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden rounded-xl bg-[#f5f5f5] border border-black/5">
@@ -104,7 +106,10 @@ function StoryBlock({
       </motion.div>
 
       {/* Text */}
-      <div className={`${isReversed ? "md:[direction:ltr]" : ""}`}>
+      <div className={`relative z-10 -mt-16 sm:-mt-20 p-6 sm:p-8 rounded-[24px] bg-background shadow-[0_15px_40px_rgba(0,0,0,0.08)] border border-black/5 md:mt-0 md:bg-transparent md:border-none md:shadow-none md:p-0 md:rounded-none ${isReversed
+        ? "w-[90%] mr-auto ml-0 md:w-auto md:mx-0 md:[direction:ltr]"
+        : "w-[90%] ml-auto mr-0 md:w-auto md:mx-0"
+        }`}>
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -142,11 +147,8 @@ export function TheDifference() {
             className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end"
           >
             <h2 className="text-4xl md:text-6xl font-heading font-black tracking-tight">
-              Why we&apos;re different.
+              OUR STORY.
             </h2>
-            <p className="text-lg text-muted font-medium md:text-right">
-              We couldn't find an energy drink <br /> that made us feel good. So we made one.
-            </p>
           </motion.div>
         </div>
 
