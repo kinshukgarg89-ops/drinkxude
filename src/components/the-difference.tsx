@@ -44,7 +44,7 @@ const stories = [
     title: "Forget \"better for you.\" That's different for everyone.",
     description: (
       <>
-        We believe in something simpler: every ingredient should have a reason to exist. We choose ingredients that support the purpose of the product, leave out what doesn't, and favour plant-based alternatives wherever they genuinely make sense.
+        We believe in something simpler: every ingredient should have a reason to exist. We choose ingredients that support the purpose of the product, leave out what doesn&apos;t, and favour plant-based alternatives wherever they genuinely make sense.
       </>
     ),
     image: (ASSETS.difference.stories[2] as any).image,

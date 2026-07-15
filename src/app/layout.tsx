@@ -11,8 +11,8 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://xude-energy.vercel.app"),
-  title: "Xude Energy | Energy, Reimagined",
-  description: "Fruit-forward flavour. Plant-based energy. Zero sugar. Discover a different kind of energy.",
+  title: "XUDE Energy Drink",
+  description: "Smooth, fruit-flavoured drink with plant-based caffeine and zero sugar. Crafted for people who want energy without the traditional energy drink experience",
   icons: {
     icon: "/assets/xude.png",
   },

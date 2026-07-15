@@ -6,6 +6,10 @@ export interface ShopifyVariant {
     amount: string;
     currencyCode: string;
   };
+  compareAtPrice: {
+    amount: string;
+    currencyCode: string;
+  } | null;
 }
 
 export interface ShopifyImage {
@@ -65,5 +69,21 @@ export interface ShopifyCart {
     edges: {
       node: ShopifyCartLine;
     }[];
+  };
+}
+
+export interface ShopifyPolicy {
+  id: string;
+  title: string;
+  handle: string;
+  body: string;
+}
+
+export interface ShopifyPoliciesResponse {
+  shop: {
+    privacyPolicy: ShopifyPolicy | null;
+    refundPolicy: ShopifyPolicy | null;
+    shippingPolicy: ShopifyPolicy | null;
+    termsOfService: ShopifyPolicy | null;
   };
 }

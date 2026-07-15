@@ -23,6 +23,12 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     const win = window as unknown as { lenis?: Lenis };
     win.lenis = lenis;
 
+    // Force Lenis to recalculate height when dynamic content (like products) loads
+    const resizeObserver = new ResizeObserver(() => {
+      lenis.resize();
+    });
+    resizeObserver.observe(document.body);
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -30,6 +36,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     requestAnimationFrame(raf);
 
     return () => {
+      resizeObserver.disconnect();
       lenis.destroy();
       delete win.lenis;
     };

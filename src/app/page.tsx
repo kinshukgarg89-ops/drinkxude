@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Navigation } from "@/components/navigation";
-import { CustomCursor } from "@/components/custom-cursor";
 import { Hero } from "@/components/hero";
 import { TheDifference } from "@/components/the-difference";
 import { WhatIsInside } from "@/components/what-is-inside";
@@ -16,7 +15,6 @@ export default function Home() {
   return (
     <CartProvider>
       <main className="relative w-full bg-background text-foreground min-h-screen antialiased">
-        <CustomCursor />
         <Navigation />
         <Hero />
         <TheDifference />

@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { Navigation } from "@/components/navigation";
-import { CustomCursor } from "@/components/custom-cursor";
 import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { CartProvider } from "@/context/CartProvider";
+import { CartDrawer } from "@/components/cart-drawer";
 
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -15,40 +15,28 @@ export default function ContactPage() {
     setStatus("submitting");
 
     const formData = new FormData(e.currentTarget);
+    const name = formData.get("name")?.toString() || "";
+    const email = formData.get("email")?.toString() || "";
+    const subject = formData.get("subject")?.toString() || "Contact from Website";
+    const message = formData.get("message")?.toString() || "";
     
-    // Using the environment variable defined in .env.local
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
-    if (!accessKey) {
-      console.error("Web3Forms access key is missing from environment variables.");
-      setStatus("error");
-      return;
-    }
+    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
     
-    formData.append("access_key", accessKey);
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        setStatus("success");
-        (e.target as HTMLFormElement).reset();
-      } else {
-        setStatus("error");
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus("error");
-    }
+    window.location.href = `mailto:contact@xudeenergy.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    setStatus("success");
+    (e.target as HTMLFormElement).reset();
+    
+    setTimeout(() => {
+      setStatus("idle");
+    }, 5000);
   };
 
   return (
     <CartProvider>
       <main className="relative w-full bg-background text-foreground min-h-screen antialiased flex flex-col">
-        <CustomCursor />
         <Navigation alwaysSticky />
+        <CartDrawer />
 
         {/* Content Wrapper */}
         <div className="flex-1 w-full max-w-3xl mx-auto pt-40 pb-24 px-6 md:px-12 flex flex-col items-center">
@@ -57,7 +45,7 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="text-foreground/60 text-lg md:text-xl text-center mb-12 max-w-lg">
-            Have questions about your order or our energy drink? Drop us a line and we'll get back to you shortly.
+            Have questions about your order or our energy drink? Drop us a line and we&apos;ll get back to you shortly.
           </p>
 
           <form onSubmit={handleSubmit} className="w-full space-y-6">

@@ -64,17 +64,7 @@ html {
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
-/* Custom cursor helpers */
-.cursor-none {
-  cursor: none;
-}
 
-@media (hover: hover) and (pointer: fine) {
-  body.has-custom-cursor,
-  body.has-custom-cursor * {
-    cursor: none !important;
-  }
-}
 
 /* Horizontal scroll container with peeking items */
 .snap-scroll {

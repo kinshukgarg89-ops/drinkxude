@@ -56,6 +56,7 @@ function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx:
 
   const selectedVariant = product.variants.find(v => v.id === selectedVariantId) || product.variants[0];
   const displayPrice = selectedVariant ? selectedVariant.price : product.price;
+  const displayComparePrice = selectedVariant ? selectedVariant.compareAtPrice : product.compareAtPrice;
 
   return (
     <motion.div
@@ -92,7 +93,12 @@ function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx:
         {/* Bottom: Variant Picker, Price + Add to Cart / stepper */}
         <div className="mt-auto pt-4 md:pt-6 flex flex-col gap-3 shrink-0">
           <div className="flex items-end justify-between gap-2">
-            <div>
+            <div className="flex items-center gap-2">
+              {displayComparePrice && displayComparePrice > displayPrice && (
+                <p className="text-sm md:text-base text-black/50 line-through decoration-black/40">
+                  ₹{displayComparePrice.toFixed(2)}
+                </p>
+              )}
               <p className="text-base md:text-lg font-bold text-black/90">
                 ₹{displayPrice.toFixed(2)}
               </p>

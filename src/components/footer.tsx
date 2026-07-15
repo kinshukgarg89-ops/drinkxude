@@ -27,9 +27,9 @@ const footerLinks = {
   ],
   support: [
     { name: "Contact", href: "/contact" },
-    { name: "Privacy Policy", href: "/policies/privacy-policy" },
-    { name: "Return And Refund", href: "/policies/returns-and-refunds" },
-    { name: "Shipping Terms & Conditions", href: "/policies/shipping-terms" },
+    { name: "Privacy Policy", href: "/policies/privacy" },
+    { name: "Return And Refund", href: "/policies/refund" },
+    { name: "Shipping Terms & Conditions", href: "/policies/shipping" },
   ],
 };
 
@@ -39,7 +39,7 @@ export function Footer() {
     if (href.startsWith("#")) {
       const id = href.slice(1);
       const el = document.getElementById(id);
-      
+
       if (el) {
         const lenis = getLenis();
         if (lenis) {
@@ -49,6 +49,7 @@ export function Footer() {
         }
       } else {
         // Element not on current page, redirect to home with hash
+        // eslint-disable-next-line react-hooks/immutability
         window.location.href = `/${href}`;
       }
     }
@@ -69,10 +70,7 @@ export function Footer() {
                 className="object-contain brightness-0 invert"
               />
             </div>
-            <p className="text-lg md:text-xl text-background/60 font-medium max-w-md mb-8">
-              A different kind of energy. Fruit-forward flavour, plant-based power, zero sugar.
-            </p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 pl-4 md:pl-8">
               {socialIcons.map((social) => (
                 <a
                   key={social.name}
@@ -91,7 +89,7 @@ export function Footer() {
           </div>
 
           {/* Links - 2 columns on mobile, separate on desktop */}
-          <div className="col-span-1 md:col-span-2 md:col-start-7">
+          <div className="col-span-1 md:col-span-2 md:col-start-7 ml-4 md:ml-0">
             <h3 className="text-xs font-bold tracking-widest uppercase text-background/50 mb-6">
               Explore
             </h3>

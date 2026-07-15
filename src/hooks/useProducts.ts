@@ -21,6 +21,7 @@ export interface MappedVariant {
   id: string;
   title: string;
   price: number;
+  compareAtPrice: number | null;
   availableForSale: boolean;
 }
 
@@ -30,6 +31,7 @@ export interface MappedProduct {
   name: string;
   description: string;
   price: number;
+  compareAtPrice: number | null;
   color: string;
   hoverText: string;
   gradient: string[];
@@ -52,11 +54,13 @@ export function useProducts() {
           id: e.node.id,
           title: e.node.title,
           price: parseFloat(e.node.price.amount),
+          compareAtPrice: e.node.compareAtPrice ? parseFloat(e.node.compareAtPrice.amount) : null,
           availableForSale: e.node.availableForSale,
         }));
         
         const defaultVariant = p.variants.edges[0]?.node;
         const price = defaultVariant ? parseFloat(defaultVariant.price.amount) : 0;
+        const compareAtPrice = defaultVariant?.compareAtPrice ? parseFloat(defaultVariant.compareAtPrice.amount) : null;
         const uiStyle = PRODUCT_UI_MAPPING[p.handle] || (p.handle.includes("mango") ? PRODUCT_UI_MAPPING["mango-passion"] : null) || {
           color: "#DDDDDD",
           hoverText: "dark",
@@ -70,6 +74,7 @@ export function useProducts() {
           name: p.title,
           description: p.description,
           price,
+          compareAtPrice,
           color: uiStyle.color,
           hoverText: uiStyle.hoverText,
           gradient: uiStyle.gradient,

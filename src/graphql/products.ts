@@ -30,6 +30,10 @@ export const getProductsQuery = `
                     amount
                     currencyCode
                   }
+                  compareAtPrice {
+                    amount
+                    currencyCode
+                  }
                 }
               }
             }
@@ -66,6 +70,10 @@ export const getProductByHandleQuery = `
             title
             availableForSale
             price {
+              amount
+              currencyCode
+            }
+            compareAtPrice {
               amount
               currencyCode
             }

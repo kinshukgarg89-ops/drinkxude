@@ -11,7 +11,15 @@ const nextConfig: NextConfig = {
     ],
   },
   allowedDevOrigins: ['cd585e0807854a.lhr.life', '6ea829fa216f98.lhr.life', 'cute-onions-eat.loca.lt', 'fine-cameras-feel.loca.lt', '*.loca.lt', 'localhost:3000'],
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: 'https://xudedrink.myshopify.com/admin',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
