@@ -2,6 +2,12 @@
 
 > **Note to AI Agents:** This document contains the architectural blueprint, past learnings, and guidelines for building a Headless Shopify storefront using Next.js. If you are reading this to start a new project, follow these instructions strictly to avoid rewriting code and back-and-forth debugging.
 
+## 0. Agent Onboarding Workflow (Proactive Guidance)
+As an AI Agent, you must proactively guide the user through the setup process rather than waiting for them to ask what to do next. Follow this sequence when starting a new headless project:
+1.  **Ask for Shopify Details:** Ask the user to provide their Shopify Store Domain and Storefront Access Token. 
+2.  **Guide Environment Setup:** Tell the user exactly how to create the `.env.local` file (or ask for permission to create it yourself) and populate it with the provided keys.
+3.  **Propose Next Steps:** Once the environment is set up, proactively propose building the GraphQL fetch utility and the basic layout, rather than waiting for the user's instructions.
+
 ## 1. Environment & API Setup
 To establish a connection between Next.js and Shopify, the following environment variables are strictly required in `.env.local`:
 ```env
