@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { getLenis } from "@/lib/lenis";
 import { Logo } from "@/components/logo";
 import { useCart } from "@/context/CartProvider";
@@ -40,6 +41,8 @@ export function Navigation({ alwaysSticky = false }: { alwaysSticky?: boolean } 
   const [isOpen, setIsOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const isSticky = alwaysSticky || scrolledPastHero;
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     if (alwaysSticky) return;
@@ -74,6 +77,16 @@ export function Navigation({ alwaysSticky = false }: { alwaysSticky?: boolean } 
     }
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    if (pathname !== "/") {
+      setIsOpen(false);
+      router.push(`/#${id}`);
+    } else {
+      scrollTo(id);
+    }
+  };
+
   return (
     <>
       <motion.header
@@ -88,6 +101,7 @@ export function Navigation({ alwaysSticky = false }: { alwaysSticky?: boolean } 
             {/* Logo */}
             <Link
               href="/"
+              onClick={() => setIsOpen(false)}
               className="relative h-8 md:h-9 w-28 md:w-32 block"
             >
               <Logo priority className={`!h-full !w-auto transition-all duration-500 ${isSticky ? "" : "invert"}`} />
@@ -103,16 +117,8 @@ export function Navigation({ alwaysSticky = false }: { alwaysSticky?: boolean } 
               {navItems.map((item) => (
                 <a
                   key={item.name}
-                  href={`#${item.id}`}
-                  onClick={(e) => {
-                    // Check if we are not on home page
-                    if (window.location.pathname !== "/") {
-                      window.location.href = `/#${item.id}`;
-                    } else {
-                      e.preventDefault();
-                      scrollTo(item.id);
-                    }
-                  }}
+                  href={`/#${item.id}`}
+                  onClick={(e) => handleNavClick(e, item.id)}
                   className={`relative px-4 py-1.5 text-sm font-medium tracking-wide rounded-full transition-colors group ${isSticky
                     ? "text-foreground/70 hover:text-foreground hover:bg-black/5"
                     : "text-white/90 hover:text-white hover:bg-white/10"
@@ -156,11 +162,8 @@ export function Navigation({ alwaysSticky = false }: { alwaysSticky?: boolean } 
                   (item, i) => (
                     <motion.a
                       key={item.name}
-                      href={`#${item.id}`}
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        scrollTo(item.id);
-                      }}
+                      href={`/#${item.id}`}
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, item.id)}
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 20 }}
@@ -179,3 +182,4 @@ export function Navigation({ alwaysSticky = false }: { alwaysSticky?: boolean } 
     </>
   );
 }
+
