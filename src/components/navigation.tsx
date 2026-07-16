@@ -38,13 +38,14 @@ function CartButton({ isSticky }: { isSticky: boolean }) {
 
 export function Navigation({ alwaysSticky = false }: { alwaysSticky?: boolean } = {}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(alwaysSticky);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const isSticky = alwaysSticky || scrolledPastHero;
 
   useEffect(() => {
     if (alwaysSticky) return;
     const handleScroll = () => {
       const heroHeight = window.innerHeight * 0.9;
-      setIsSticky(window.scrollY > heroHeight);
+      setScrolledPastHero(window.scrollY > heroHeight);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
