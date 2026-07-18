@@ -92,7 +92,7 @@ function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx:
 
         {/* Bottom: Variant Picker, Price + Add to Cart / stepper */}
         <div className="mt-auto pt-4 md:pt-6 flex flex-col gap-3 shrink-0">
-          <div className="flex items-end justify-between gap-2">
+          <div className="flex flex-col-reverse md:flex-row items-start md:items-end justify-between gap-3 md:gap-2">
             <div className="flex items-center gap-2">
               {displayComparePrice && displayComparePrice > displayPrice && (
                 <p className="text-sm md:text-base text-black/50 line-through decoration-black/40">
@@ -108,7 +108,7 @@ function ProductCard({ product, idx, isDesktop }: { product: MappedProduct; idx:
                 aria-label={`Select variant for ${product.name}`}
                 value={selectedVariantId}
                 onChange={(e) => setSelectedVariantId(e.target.value)}
-                className="text-sm font-medium border border-black/10 bg-black/5 rounded-md px-2 py-1 outline-none transition-colors duration-500 group-hover:bg-black/10 group-hover:border-black/20"
+                className="text-sm font-medium border border-black/10 bg-black/5 rounded-md px-2 py-1.5 md:py-1 outline-none transition-colors duration-500 group-hover:bg-black/10 group-hover:border-black/20"
               >
                 {product.variants.map(v => (
                   <option key={v.id} value={v.id} className="text-black bg-white">
