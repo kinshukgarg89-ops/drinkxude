@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { getLenis } from "@/lib/lenis";
 import { ASSETS } from "@/lib/assets";
@@ -59,13 +58,10 @@ export function Hero() {
               >
                 <picture className="absolute inset-0">
                   <source media="(min-width: 768px)" srcSet={slide.desktop} />
-                  <Image
+                  <img
                     src={slide.mobile}
                     alt={slide.alt}
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="100vw"
+                    className="object-cover w-full h-full absolute inset-0"
                   />
                 </picture>
               </motion.div>

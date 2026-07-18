@@ -1,6 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
+
+function useIsClient() {
+  return useSyncExternalStore(
+    () => () => { },
+    () => true,
+    () => false
+  );
+}
 import { motion } from "framer-motion";
 import { Leaf, Sun, Zap, Activity, Shield, Flame, Feather } from "lucide-react";
 import { ASSETS } from "@/lib/assets";
@@ -47,6 +55,16 @@ const rightIngredients = [
 ];
 
 export function WhatIsInside() {
+  const isClient = useIsClient();
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.matchMedia("(max-width: 767px)").matches);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <section id="inside-section" className="relative w-full bg-foreground text-background py-24 md:py-32 px-4 sm:px-6 lg:px-10 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
@@ -114,24 +132,25 @@ export function WhatIsInside() {
             className="flex-[1.2] xl:flex-[1.5] order-1 lg:order-2 relative w-full aspect-[9/16] md:aspect-square lg:aspect-auto"
           >
             <div className="absolute inset-0 bg-background/10 border border-background/10 overflow-hidden shadow-2xl">
-              {/* Mobile Video */}
-              <video
-                src={ASSETS.inside.videoMobile}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover md:hidden"
-              />
-              {/* Desktop Video */}
-              <video
-                src={ASSETS.inside.videoDesktop}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="hidden md:block w-full h-full object-cover"
-              />
+              {isClient && (isMobile ? (
+                <video
+                  src={ASSETS.inside.videoMobile}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <video
+                  src={ASSETS.inside.videoDesktop}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ))}
             </div>
           </motion.div>
 
