@@ -20,12 +20,25 @@ export default function ContactPage() {
     const subject = formData.get("subject")?.toString() || "Contact from Website";
     const message = formData.get("message")?.toString() || "";
     
-    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-    
-    window.location.href = `mailto:contact@xudeenergy.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    setStatus("success");
-    (e.target as HTMLFormElement).reset();
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus("error");
+    }
     
     setTimeout(() => {
       setStatus("idle");
@@ -98,9 +111,7 @@ export default function ContactPage() {
               ></textarea>
             </div>
 
-            {/* Custom Web3Forms subjects and redirects can be controlled via hidden inputs */}
-            <input type="hidden" name="from_name" value="Xude Energy Website" />
-            
+
             <button
               type="submit"
               disabled={status === "submitting" || status === "success"}
